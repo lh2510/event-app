@@ -35,7 +35,15 @@ export default function EditEventItem(props: EditEventItem) {
 					console.log('why err', err)
 				})
 		} else if (saveOrDelete === 'delete') {
-			alert('delete')
+			axios
+				.delete(`http://localhost:4000/api/event/${props.id}`, { headers: { Authorization: `Bearer ${token}` } })
+				.then((r) => {
+					console.log(r.data)
+				})
+				// catch error
+				.catch((err) => {
+					console.log('why err', err)
+				})
 		}
 		console.log(data)
 	}
@@ -51,19 +59,19 @@ export default function EditEventItem(props: EditEventItem) {
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className='row-wrapper'>
 				<div>
-					<input type='datetime-local' placeholder={props.from} {...register('from', { required: true })} />
+					<input type='datetime-local' placeholder={props.from} {...register('from')} />
 				</div>
 
 				<div>
-					<input type='datetime-local' placeholder={props.to} {...register('to', { required: true })} />
+					<input type='datetime-local' placeholder={props.to} {...register('to')} />
 				</div>
 
 				<div>
-					<input type='text' placeholder={props.content} {...register('content', { required: true })} />
+					<input type='text' placeholder={props.content} {...register('content')} />
 				</div>
 
 				<div>
-					<input type='checkbox' checked={props.isCompleted ? true : false} placeholder='' {...register('isCompleted')} />
+					<input type='checkbox' placeholder='' {...register('isCompleted')} />
 				</div>
 
 				<input className='input-submit' type='submit' value='Save' onClick={handleSave} />
