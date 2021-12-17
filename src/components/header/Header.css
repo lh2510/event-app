@@ -1,0 +1,32 @@
+.Header {
+	position: relative;
+	width: 100%;
+	height: 109.11px;
+	background: #ffffff;
+	box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.1);
+	margin: 0;
+	padding: 0;
+	z-index: 2;
+}
+
+.Header .logined {
+	position: absolute;
+	right: 0;
+	width: 369px;
+	height: 109.11px;
+}
+
+
+.Header .logined .avatar {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	right: 34.18px;
+	top: 34.93px;
+	background-color: #e8e8e8;
+	border-radius: 50%;
+	background: url(avatar.png), #e8e8e8;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 40px 40px;
+}
