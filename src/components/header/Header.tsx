@@ -23,7 +23,7 @@ export default function Header(props: HeaderProps) {
 						)
 					} else {
 						return (
-							<>
+							<div className='Header__login'>
 								<Link
 									to={{
 										pathname: `/login`,
@@ -37,9 +37,9 @@ export default function Header(props: HeaderProps) {
 										pathname: `/register`,
 									}}
 								>
-									<div className='Header__login'>Register</div>
+									<div >Register</div>
 								</Link>
-							</>
+							</div>
 						)
 					}
 				} else {
