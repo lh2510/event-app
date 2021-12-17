@@ -1,8 +1,12 @@
-button {
+button,
+.input-submit {
 	background-color: #0d6efd;
 	color: white;
 	border: 1px solid transparent;
 	border-radius: 3px;
 	padding: 3px 5px;
-	
+}
+
+input {
+	height: 30px;
 }

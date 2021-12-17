@@ -2,9 +2,16 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import EventItem from './Event/EventItem'
 import './EventWrapper.css'
+import AddEventItem from './Event/AddEventItem'
 
 export default function EventPage() {
 	const [EventList, setEventList] = useState([])
+	const [addNewEvent, setAddNewEvent] = useState(false)
+
+	const handleClick = () => {
+		setAddNewEvent(true)
+	}
+
 	useEffect(() => {
 		const token = localStorage.getItem('token')
 		console.log(token)
@@ -23,7 +30,7 @@ export default function EventPage() {
 	return (
 		<div className='EventWrapper'>
 			<div className='EventWrapper__add'>
-				<button>Add Event</button>
+				<button onClick={handleClick}>Add Event</button>
 			</div>
 
 			<div className='EventWrapper__title'>
@@ -34,9 +41,11 @@ export default function EventPage() {
 				<div>Actions</div>
 			</div>
 
+			<div>{addNewEvent ? <AddEventItem /> : null}</div>
+
 			<div className='EventWrapper__row'>
-				{EventList.map(() => {
-					return <EventItem />
+				{EventList.map((item: any) => {
+					return <EventItem key={item._id} from={item.from} to={item.to} content={item.content} isCompleted={item.isCompleted} />
 				})}
 			</div>
 		</div>
