@@ -5,7 +5,7 @@ import Register from './components/register/Register'
 import './App.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Login from './components/login/Login'
-import EventPage from './components/event_list/EventPage'
+import EventPage from './components/event_page/EventWrapper'
 
 function App() {
 	return (

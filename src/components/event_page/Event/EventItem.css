@@ -1,0 +1,16 @@
+.EventItem {
+	display: flex;
+	border-top: 1px black solid;
+
+	padding: 15px 10px;
+}
+
+.EventItem div:nth-child(-n + 3) {
+	flex-basis: 25%;
+	text-align: left;
+}
+
+.EventItem div:nth-last-child(-n + 2) {
+	flex-basis: 12.5%;
+	text-align: left;
+}

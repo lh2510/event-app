@@ -1,0 +1,25 @@
+.EventWrapper {
+	box-sizing: border-box;
+	background: #ffffff;
+	box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+
+	max-width: 900px;
+	margin: 20px auto;
+}
+
+.EventWrapper__title {
+	display: flex;
+	padding: 15px 10px;
+	font-weight: 500;
+}
+
+.EventWrapper__title div:nth-child(-n + 3) {
+	flex-basis: 25%;
+	text-align: left;
+}
+
+.EventWrapper__title div:nth-last-child(-n + 2) {
+	flex-basis: 12.5%;
+	text-align: left;
+}
