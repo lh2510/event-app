@@ -11,6 +11,7 @@ interface EditEventItem {
 	isCompleted?: boolean
 }
 export default function EditEventItem(props: EditEventItem) {
+	console.log(props.id)
 	const [saveOrDelete, setSaveOrDelete] = useState('')
 
 	const {
@@ -22,8 +23,17 @@ export default function EditEventItem(props: EditEventItem) {
 
 	const onSubmit = (data: any) => {
 		const token = localStorage.getItem('token')
+
 		if (saveOrDelete === 'save') {
-			alert('save')
+			axios
+				.put(`http://localhost:4000/api/event/${props.id}`, data, { headers: { Authorization: `Bearer ${token}` } })
+				.then((r) => {
+					console.log(r.data)
+				})
+				// catch error
+				.catch((err) => {
+					console.log('why err', err)
+				})
 		} else if (saveOrDelete === 'delete') {
 			alert('delete')
 		}

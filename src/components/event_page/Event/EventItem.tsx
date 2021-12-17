@@ -12,6 +12,7 @@ interface EventItemProps {
 }
 export default function EventItem(props: EventItemProps) {
 	const [editId, setEditId] = useState('')
+	
 	const handleClick = (e: any) => {
 		console.log(e.currentTarget.id)
 		setEditId(e.currentTarget.id)
