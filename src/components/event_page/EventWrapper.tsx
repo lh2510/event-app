@@ -22,8 +22,9 @@ export default function EventPage() {
 
 	return (
 		<div className='EventWrapper'>
-			<h1> event page</h1>
-
+			<div>
+				<button>Add Event</button>
+			</div>
 			<div className='EventWrapper__title'>
 				<div>From</div>
 				<div>To</div>
@@ -31,6 +32,7 @@ export default function EventPage() {
 				<div>Status</div>
 				<div>Actions</div>
 			</div>
+
 			<div className='EventWrapper__row'>
 				{EventList.map(() => {
 					return <EventItem />
