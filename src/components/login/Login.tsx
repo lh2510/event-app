@@ -24,6 +24,8 @@ export default function Login() {
 
 			.then((r) => {
 				console.log(r.data)
+				console.log(r.data.data.token)
+				localStorage.setItem('token', r.data.data.token)
 				history.push({
 					pathname: `/event`,
 				})
