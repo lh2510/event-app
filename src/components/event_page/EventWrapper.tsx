@@ -22,9 +22,10 @@ export default function EventPage() {
 
 	return (
 		<div className='EventWrapper'>
-			<div>
+			<div className='EventWrapper__add'>
 				<button>Add Event</button>
 			</div>
+
 			<div className='EventWrapper__title'>
 				<div>From</div>
 				<div>To</div>

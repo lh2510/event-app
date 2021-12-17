@@ -1,6 +1,6 @@
 .EventItem {
 	display: flex;
-	border-top: 1px black solid;
+	border-top: 1px #ccc solid;
 
 	padding: 15px 10px;
 }

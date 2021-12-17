@@ -10,7 +10,7 @@ export default function EventItem() {
 			<div>Eat breakfast</div>
 			<div>pending</div>
 
-			<div>save</div>
+			<button>Edit</button>
 		</div>
 	)
 }

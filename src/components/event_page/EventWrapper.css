@@ -8,10 +8,14 @@
 	margin: 20px auto;
 }
 
+.EventWrapper__add {
+	padding: 15px 10px;
+}
 .EventWrapper__title {
 	display: flex;
 	padding: 15px 10px;
 	font-weight: 500;
+	border-top: 1px solid #ccc;
 }
 
 .EventWrapper__title div:nth-child(-n + 3) {
