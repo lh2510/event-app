@@ -11,9 +11,8 @@ interface EditEventItem {
 	isCompleted?: boolean
 }
 export default function EditEventItem(props: EditEventItem) {
-	console.log(props.id)
 	const [saveOrDelete, setSaveOrDelete] = useState('')
-
+	const [deleteSuccess, setDeleteSuccess] = useState(false)
 	const {
 		register,
 		handleSubmit,
@@ -39,6 +38,7 @@ export default function EditEventItem(props: EditEventItem) {
 				.delete(`http://localhost:4000/api/event/${props.id}`, { headers: { Authorization: `Bearer ${token}` } })
 				.then((r) => {
 					console.log(r.data)
+					setDeleteSuccess(true)
 				})
 				// catch error
 				.catch((err) => {
@@ -56,27 +56,31 @@ export default function EditEventItem(props: EditEventItem) {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className='row-wrapper'>
-				<div>
-					<input type='datetime-local' placeholder={props.from} {...register('from')} />
-				</div>
+		<>
+			{deleteSuccess === true ? null : (
+				<form onSubmit={handleSubmit(onSubmit)}>
+					<div className='row-wrapper'>
+						<div>
+							<input type='datetime-local' placeholder={props.from} {...register('from')} />
+						</div>
 
-				<div>
-					<input type='datetime-local' placeholder={props.to} {...register('to')} />
-				</div>
+						<div>
+							<input type='datetime-local' placeholder={props.to} {...register('to')} />
+						</div>
 
-				<div>
-					<input type='text' placeholder={props.content} {...register('content')} />
-				</div>
+						<div>
+							<input type='text' placeholder={props.content} {...register('content')} />
+						</div>
 
-				<div>
-					<input type='checkbox' placeholder='' {...register('isCompleted')} />
-				</div>
+						<div>
+							<input type='checkbox' placeholder='' {...register('isCompleted')} />
+						</div>
 
-				<input className='input-submit' type='submit' value='Save' onClick={handleSave} />
-				<input className='input-submit' type='submit' value='Delete' onClick={handleDelete} />
-			</div>
-		</form>
+						<input className='input-submit' type='submit' value='Save' onClick={handleSave} />
+						<input className='input-submit' type='submit' value='Delete' onClick={handleDelete} />
+					</div>
+				</form>
+			)}
+		</>
 	)
 }
