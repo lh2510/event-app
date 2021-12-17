@@ -6,7 +6,6 @@ export default function EventPage() {
 		const token = localStorage.getItem('token')
 		console.log(token)
 		axios
-
 			.get('http://localhost:4000/api/event/', { headers: { Authorization: `Bearer ${token}` } })
 			.then((r) => {
 				console.log(r.data)

@@ -8,7 +8,7 @@ interface HeaderProps {
 export default function Header(props: HeaderProps) {
 	return (
 		<div className='Header'>
-			<div className='logo'></div>
+			<div className='Header__logo'>Event List</div>
 			{(() => {
 				if (props.content !== 'logined') {
 					if (props.content === 'login' || props.content === 'register') {
@@ -18,7 +18,7 @@ export default function Header(props: HeaderProps) {
 									pathname: `/${props.content.toLowerCase()}`,
 								}}
 							>
-								<div className='login'>{props.content}</div>
+								<div className='Header__login'>{props.content}</div>
 							</Link>
 						)
 					} else {
@@ -37,15 +37,15 @@ export default function Header(props: HeaderProps) {
 										pathname: `/register`,
 									}}
 								>
-									<div className='login'>Register</div>
+									<div className='Header__login'>Register</div>
 								</Link>
 							</>
 						)
 					}
 				} else {
 					return (
-						<div className='logined'>
-							<span className='avatar'></span>
+						<div className='Header-logined'>
+							<span className='Header-logined__avatar'></span>
 						</div>
 					)
 				}
