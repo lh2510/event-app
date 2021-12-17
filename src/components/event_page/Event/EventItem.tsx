@@ -1,24 +1,38 @@
 import React, { useState } from 'react'
 import './EventItem.css'
-import { useForm } from 'react-hook-form'
-import axios from 'axios'
+import AddEventItem from './AddEventItem'
+import EditEventItem from './editEventItem/EditEventItem'
 
 interface EventItemProps {
+	id: string
 	from: string
 	to: string
 	content: string
 	isCompleted: boolean
 }
 export default function EventItem(props: EventItemProps) {
+	const [editId, setEditId] = useState('')
+	const handleClick = (e: any) => {
+		console.log(e.currentTarget.id)
+		setEditId(e.currentTarget.id)
+	}
 	return (
-		<div className='EventItem'>
-			<div className='row-wrapper'>
-				<div>{props.from}</div>
-				<div>{props.to}</div>
-				<div>{props.content}</div>
-				<div>{props.isCompleted ? 'completed' : 'pending'}</div>
-				<button>Edit</button>
-			</div>
-		</div>
+		<>
+			{editId === props.id ? (
+				<EditEventItem id={props.id} from={props.from} to={props.to} content={props.content} isCompleted={props.isCompleted} />
+			) : (
+				<div className='EventItem'>
+					<div className='row-wrapper'>
+						<div>{props.from}</div>
+						<div>{props.to}</div>
+						<div>{props.content}</div>
+						<div>{props.isCompleted ? 'completed' : 'pending'}</div>
+						<button id={props.id} onClick={handleClick}>
+							Edit
+						</button>
+					</div>
+				</div>
+			)}
+		</>
 	)
 }

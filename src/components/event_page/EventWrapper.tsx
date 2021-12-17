@@ -62,7 +62,7 @@ export default function EventPage() {
 
 			<div className='EventWrapper__row'>
 				{EventList.map((item: any) => {
-					return <EventItem key={item._id} from={item.from} to={item.to} content={item.content} isCompleted={item.isCompleted} />
+					return <EventItem key={item._id} id={item._id} from={item.from} to={item.to} content={item.content} isCompleted={item.isCompleted} />
 				})}
 			</div>
 		</div>
