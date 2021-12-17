@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react'
 import './EventItem.css'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import { store } from '../../../redux/addNewEvent.redux'
 
 export default function AddEventItem() {
 	const [EventList, setEventList] = useState([])
+	const [update, forceUpdate] = useState(false)
 	useEffect(() => {
+		store.subscribe(() => {
+			forceUpdate((pre) => !pre)
+		})
+
 		const token = localStorage.getItem('token')
 		console.log(token)
 		axios
@@ -36,6 +42,7 @@ export default function AddEventItem() {
 
 			.then((r) => {
 				console.log(r.data)
+				store.dispatch({ type: 'makeFalse' })
 			})
 			// catch error
 			.catch((err) => {
