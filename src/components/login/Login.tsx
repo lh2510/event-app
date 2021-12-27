@@ -42,17 +42,17 @@ export default function Login() {
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>
 					<div>
-						<label> Username</label>
 						<input type='text' placeholder='User name' {...register('userName', { required: true, maxLength: 20 })} />
 					</div>
 
 					<div>
-						<label> Password</label>
 						<input type='password' placeholder='Password' {...register('password', { required: true })} />
 					</div>
 				</div>
 
-				<input className='next' type='submit' value='Next' />
+				<button className='Login__button' >
+					Login
+				</button>
 			</form>
 		</div>
 	)

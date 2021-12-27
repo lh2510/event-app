@@ -1,0 +1,17 @@
+.Login {
+	text-align: center;
+}
+
+.Login h1 {
+	font-size: 1.5em;
+}
+
+.Login input {
+	border: 1px solid transparent;
+	border-bottom: 1px solid black;
+	width: 200px;
+	outline: none;
+}
+.Login__button {
+	margin-top: 10px;
+}

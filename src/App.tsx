@@ -28,7 +28,7 @@ function App() {
 					</Route>
 
 					<Route path='/'>
-						<Header content='' />
+					<Header content='register' />
 						<Login />
 					</Route>
 				</Switch>

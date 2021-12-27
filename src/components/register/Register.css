@@ -1,0 +1,17 @@
+.Register {
+	text-align: center;
+}
+
+.Register h1 {
+	font-size: 1.5em;
+}
+
+.Register input {
+	border: 1px solid transparent;
+	border-bottom: 1px solid black;
+	width: 200px;
+	outline: none;
+}
+.Register__button {
+	margin-top: 10px;
+}

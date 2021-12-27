@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-
+import  './Register.css'
 export default function Login() {
 	const {
 		register,
@@ -37,22 +37,22 @@ export default function Login() {
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>
 					<div>
-						<label> Username</label>
+						
 						<input type='text' placeholder='User name' {...register('userName', { required: true, maxLength: 20 })} />
 					</div>
 
 					<div>
-						<label> Password</label>
+						
 						<input type='password' placeholder='Password' {...register('password', { required: true })} />
 					</div>
 
 					<div>
-						<label> Repeat password</label>
+						
 						<input type='password' placeholder='Repeat Password' {...register('repeatPassword', { required: true })} />
 					</div>
 				</div>
 
-				<input className='next' type='submit' value='Next' />
+				<button className='Register__button'>Register</button>
 			</form>
 		</div>
 	)
