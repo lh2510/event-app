@@ -2,10 +2,12 @@ import React from 'react'
 import './Login.css'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import axios from 'axios'
 
 export default function Login() {
 	let history = useHistory()
+	const dispatch = useDispatch()
 	const {
 		register,
 		handleSubmit,
@@ -26,6 +28,7 @@ export default function Login() {
 				console.log(r.data)
 				console.log(r.data.data.token)
 				localStorage.setItem('token', r.data.data.token)
+				dispatch({ type: 'setUsername', payload: data.userName })
 				history.push({
 					pathname: `/event`,
 				})
@@ -50,9 +53,7 @@ export default function Login() {
 					</div>
 				</div>
 
-				<button className='Login__button' >
-					Login
-				</button>
+				<button className='Login__button'>Login</button>
 			</form>
 		</div>
 	)

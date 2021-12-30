@@ -1,7 +1,10 @@
 import { createStore } from 'redux'
 
-function reducer(state = { addNewEvent: false, editSave: false, todos: [], editIdList: [] }, action) {
+function reducer(state = { addNewEvent: false, editSave: false, todos: [], editIdList: [], userName: '' }, action) {
 	switch (action.type) {
+		case 'setUsername':
+			return { ...state, userName: action.payload }
+
 		case 'initialize':
 			return { ...state, todos: action.payload }
 

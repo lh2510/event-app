@@ -37,6 +37,14 @@
 	background-color: white;
 }
 
+.Header-logined__welcome {
+	position: absolute;
+	width: 70px;
+	height: 40px;
+	right: 134.18px;
+	top: 22px;
+	color: white;
+}
 .Header-logined__avatar {
 	position: absolute;
 	width: 40px;
