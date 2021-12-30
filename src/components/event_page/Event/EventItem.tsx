@@ -11,17 +11,15 @@ interface EventItemProps {
 	isCompleted: boolean
 }
 export default function EventItem(props: EventItemProps) {
-	const saved = useSelector((state: RootStateOrAny) => state.editSave)
-
-	const [editId, setEditId] = useState('')
+	const dispatch = useDispatch()
+	const editIdList = useSelector((state: RootStateOrAny) => state.editIdList)
 
 	const handleClick = (e: any) => {
-		console.log(e.currentTarget.id)
-		setEditId(e.currentTarget.id)
+		dispatch({ type: 'pushToeditIdList', payload: e.currentTarget.id })
 	}
 	return (
 		<>
-			{editId === props.id && saved === false ? ( //if user click this eventItem
+			{editIdList.includes(props.id) ? ( //if user click this eventItem
 				<EditEventItem id={props.id} from={props.from} to={props.to} content={props.content} isCompleted={props.isCompleted} />
 			) : (
 				<div className='EventItem'>

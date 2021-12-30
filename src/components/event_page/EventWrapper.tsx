@@ -11,8 +11,7 @@ export default function EventPage() {
 	//const [EventList, setEventList] = useState([])
 	const dispatch = useDispatch()
 	const store = useStore()
-	console.log(store)
-	console.log('store', store)
+
 	const addNewEventValue = useSelector((state: RootStateOrAny) => state.addNewEvent)
 	console.log(store.getState())
 	const EventList = useSelector((state: RootStateOrAny) => state.todos)
@@ -22,11 +21,9 @@ export default function EventPage() {
 	}
 	const token = localStorage.getItem('token')
 	useEffect(() => {
-		console.log(token)
 		axios
 			.get('http://localhost:4000/api/event/', { headers: { Authorization: `Bearer ${token}` } })
 			.then((r) => {
-				console.log(r.data)
 				//setEventList(r.data.result)
 				dispatch({ type: 'initialize', payload: r.data.result })
 			})

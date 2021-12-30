@@ -35,8 +35,9 @@ export default function EditEventItem(props: EditEventItem) {
 			axios
 				.put(`http://localhost:4000/api/event/${props.id}`, data, { headers: { Authorization: `Bearer ${token}` } })
 				.then((r) => {
-					console.log(r.data)
-					dispatch({ type: 'makeEditSaveTrue' })
+					console.log(data)
+					dispatch({ type: 'editItem_save', payload: { data: data, id: props.id } })
+					console.log(store.getState())
 				})
 				// catch error
 				.catch((err) => {
