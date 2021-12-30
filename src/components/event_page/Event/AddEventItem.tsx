@@ -50,11 +50,11 @@ export default function AddEventItem() {
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className='row-wrapper'>
 				<div>
-					<input type='datetime-local' placeholder='' {...register('from', { required: true })} />
+					<input type='datetime-local' {...register('from', { required: true })} />
 				</div>
 
 				<div>
-					<input type='datetime-local' placeholder='' {...register('to', { required: true })} />
+					<input type='datetime-local' {...register('to', { required: true })} />
 				</div>
 
 				<div>
@@ -62,7 +62,7 @@ export default function AddEventItem() {
 				</div>
 
 				<div>
-					<input type='checkbox' placeholder='' {...register('isCompleted')} />
+					<input type='checkbox' {...register('isCompleted')} />
 				</div>
 
 				<input className='input-submit' type='submit' value='Save' />

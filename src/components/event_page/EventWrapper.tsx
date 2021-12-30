@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { store } from '../../redux/store'
+
 import EventItem from './Event/EventItem'
 import './EventWrapper.css'
 import AddEventItem from './Event/AddEventItem'
 import { useSelector, useDispatch, useStore, RootStateOrAny } from 'react-redux'
-
+import { useHistory } from 'react-router-dom'
 export default function EventPage() {
+	const history = useHistory()
 	const [EventList, setEventList] = useState([])
 	const dispatch = useDispatch()
-	const storevalue = useStore().getState()
-	console.log(storevalue)
+	const store = useStore()
+	console.log(store)
+	console.log('store', store)
 	const addNewEventValue = useSelector((state: RootStateOrAny) => state.addNewEvent)
 
 	const handleClick = () => {
@@ -21,6 +23,7 @@ export default function EventPage() {
 	useEffect(() => {
 		store.subscribe(() => {
 			if (store.getState().addNewEvent === false) {
+				//then get the updated list
 				axios
 					.get('http://localhost:4000/api/event/', { headers: { Authorization: `Bearer ${token}` } })
 					.then((r) => {
@@ -30,6 +33,8 @@ export default function EventPage() {
 					// catch error
 					.catch((err) => {
 						console.log('why err', err)
+						alert('you are out of session. Login again')
+						history.push('/login')
 					})
 			}
 		})
@@ -45,6 +50,7 @@ export default function EventPage() {
 			// catch error
 			.catch((err) => {
 				console.log('why err', err)
+				history.push('/login')
 			})
 	}, [])
 

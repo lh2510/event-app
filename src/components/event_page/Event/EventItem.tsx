@@ -3,6 +3,7 @@ import './EventItem.css'
 import AddEventItem from './AddEventItem'
 import EditEventItem from './EditEventItem'
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux'
+import { displayTime } from '../../../utils/displayTime'
 interface EventItemProps {
 	id: string
 	from: string
@@ -20,13 +21,13 @@ export default function EventItem(props: EventItemProps) {
 	}
 	return (
 		<>
-			{editId === props.id ? (//if user click this eventItem
+			{editId === props.id ? ( //if user click this eventItem
 				<EditEventItem id={props.id} from={props.from} to={props.to} content={props.content} isCompleted={props.isCompleted} />
 			) : (
 				<div className='EventItem'>
 					<div className='row-wrapper'>
-						<div>{props.from}</div>
-						<div>{props.to}</div>
+						<div>{displayTime(props.from)}</div>
+						<div>{displayTime(props.to)}</div>
 						<div>{props.content}</div>
 						<div>{props.isCompleted ? 'completed' : 'pending'}</div>
 						<button id={props.id} onClick={handleClick}>

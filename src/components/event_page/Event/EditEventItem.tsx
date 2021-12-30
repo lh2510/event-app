@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-
+import { useHistory } from 'react-router-dom'
 interface EditEventItem {
 	id?: string
 	from?: string
@@ -12,13 +12,14 @@ interface EditEventItem {
 	isCompleted?: boolean
 }
 export default function EditEventItem(props: EditEventItem) {
+	const history = useHistory()
 	const dispatch = useDispatch()
 	const [saveOrDelete, setSaveOrDelete] = useState('')
 	const [deleteSuccess, setDeleteSuccess] = useState(false)
-	const [checked, setChecked] = useState(false)
+	const [checked, setChecked] = useState(props.isCompleted)
 	const [from, setFrom] = useState(props.from?.slice(0, 16))
 	const [to, setTo] = useState(props.to?.slice(0, 16))
-
+	const [content, setContent] = useState(props.content)
 	const {
 		register,
 		handleSubmit,
@@ -39,6 +40,7 @@ export default function EditEventItem(props: EditEventItem) {
 				// catch error
 				.catch((err) => {
 					console.log('why err', err)
+					history.push('/login')
 				})
 		} else if (saveOrDelete === 'delete') {
 			axios
@@ -71,6 +73,9 @@ export default function EditEventItem(props: EditEventItem) {
 	const handleOnChangeTo = (e: any) => {
 		setTo(e.currentTarget.value)
 	}
+	const handleOnChangeContent = (e: any) => {
+		setContent(e.currentTarget.value)
+	}
 
 	return (
 		<>
@@ -86,15 +91,16 @@ export default function EditEventItem(props: EditEventItem) {
 						</div>
 
 						<div>
-							<input type='text' placeholder={props.content} {...register('content')} />
+							<input type='text' value={content} {...register('content')} onChange={handleOnChangeContent} />
 						</div>
 
 						<div>
 							<input type='checkbox' checked={checked ? true : false} onClick={handleClick} {...register('isCompleted')} />
 						</div>
 
-						<input className='input-submit' type='submit' value='Save' onClick={handleSave} />
-						<input className='input-submit' type='submit' value='Delete' onClick={handleDelete} />
+						<div>
+							<input className='input-submit' type='submit' value='Save' onClick={handleSave} /> <input className='input-submit' type='submit' value='Delete' onClick={handleDelete} />
+						</div>
 					</div>
 				</form>
 			)}
