@@ -27,3 +27,7 @@
 	flex-basis: 12.5%;
 	text-align: left;
 }
+.EventWrapper__row {
+	height: 400px;
+	overflow: auto;
+}
