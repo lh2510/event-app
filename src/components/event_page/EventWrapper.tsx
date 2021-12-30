@@ -13,11 +13,10 @@ export default function EventPage() {
 	const store = useStore()
 
 	const addNewEventValue = useSelector((state: RootStateOrAny) => state.addNewEvent)
-	console.log(store.getState())
+	
 	const EventList = useSelector((state: RootStateOrAny) => state.todos)
 	const handleClick = () => {
 		dispatch({ type: 'addNewEvent' })
-		console.log(store.getState())
 	}
 	const token = localStorage.getItem('token')
 	useEffect(() => {

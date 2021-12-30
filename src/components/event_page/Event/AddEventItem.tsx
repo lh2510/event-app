@@ -30,12 +30,10 @@ export default function AddEventItem() {
 	const onSubmit = (data: any) => {
 		const token = localStorage.getItem('token')
 
-		console.log(data)
 		axios
 			.post('http://localhost:4000/api/event', data, { headers: { Authorization: `Bearer ${token}` } })
 
 			.then((r) => {
-				console.log(r.data)
 				dispatch({ type: 'addNewEvent_save', payload: r.data.data })
 			})
 			// catch error
