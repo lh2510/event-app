@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './EventItem.css'
-import AddEventItem from './AddEventItem'
 import EditEventItem from './EditEventItem'
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux'
 import { displayTime } from '../../../utils/displayTime'
@@ -12,7 +11,8 @@ interface EventItemProps {
 	isCompleted: boolean
 }
 export default function EventItem(props: EventItemProps) {
-	const editSaveValue = useSelector((state: RootStateOrAny) => state.editSave)
+	const saved = useSelector((state: RootStateOrAny) => state.editSave)
+
 	const [editId, setEditId] = useState('')
 
 	const handleClick = (e: any) => {
@@ -21,7 +21,7 @@ export default function EventItem(props: EventItemProps) {
 	}
 	return (
 		<>
-			{editId === props.id ? ( //if user click this eventItem
+			{editId === props.id && saved === false ? ( //if user click this eventItem
 				<EditEventItem id={props.id} from={props.from} to={props.to} content={props.content} isCompleted={props.isCompleted} />
 			) : (
 				<div className='EventItem'>

@@ -8,44 +8,27 @@ import { useSelector, useDispatch, useStore, RootStateOrAny } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 export default function EventPage() {
 	const history = useHistory()
-	const [EventList, setEventList] = useState([])
+	//const [EventList, setEventList] = useState([])
 	const dispatch = useDispatch()
 	const store = useStore()
 	console.log(store)
 	console.log('store', store)
 	const addNewEventValue = useSelector((state: RootStateOrAny) => state.addNewEvent)
-
+	console.log(store.getState())
+	const EventList = useSelector((state: RootStateOrAny) => state.todos)
 	const handleClick = () => {
-		dispatch({ type: 'makeTrue' })
+		dispatch({ type: 'addNewEvent' })
 		console.log(store.getState())
 	}
-
+	const token = localStorage.getItem('token')
 	useEffect(() => {
-		store.subscribe(() => {
-			if (store.getState().addNewEvent === false) {
-				//then get the updated list
-				axios
-					.get('http://localhost:4000/api/event/', { headers: { Authorization: `Bearer ${token}` } })
-					.then((r) => {
-						console.log(r.data)
-						setEventList(r.data.result)
-					})
-					// catch error
-					.catch((err) => {
-						console.log('why err', err)
-						alert('you are out of session. Login again')
-						history.push('/login')
-					})
-			}
-		})
-
-		const token = localStorage.getItem('token')
 		console.log(token)
 		axios
 			.get('http://localhost:4000/api/event/', { headers: { Authorization: `Bearer ${token}` } })
 			.then((r) => {
 				console.log(r.data)
-				setEventList(r.data.result)
+				//setEventList(r.data.result)
+				dispatch({ type: 'initialize', payload: r.data.result })
 			})
 			// catch error
 			.catch((err) => {

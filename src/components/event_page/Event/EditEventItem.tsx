@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, useStore } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 interface EditEventItem {
 	id?: string
@@ -12,6 +12,7 @@ interface EditEventItem {
 	isCompleted?: boolean
 }
 export default function EditEventItem(props: EditEventItem) {
+	const store = useStore()
 	const history = useHistory()
 	const dispatch = useDispatch()
 	const [saveOrDelete, setSaveOrDelete] = useState('')

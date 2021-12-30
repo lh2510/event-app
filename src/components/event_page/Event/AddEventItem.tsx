@@ -5,7 +5,6 @@ import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 
 export default function AddEventItem() {
-	const [EventList, setEventList] = useState([])
 	const dispatch = useDispatch()
 	useEffect(() => {
 		const token = localStorage.getItem('token')
@@ -14,7 +13,6 @@ export default function AddEventItem() {
 			.get('http://localhost:4000/api/event/', { headers: { Authorization: `Bearer ${token}` } })
 			.then((r) => {
 				console.log(r.data)
-				setEventList(r.data.result)
 			})
 			// catch error
 			.catch((err) => {
@@ -38,7 +36,7 @@ export default function AddEventItem() {
 
 			.then((r) => {
 				console.log(r.data)
-				dispatch({ type: 'makeFalse' })
+				dispatch({ type: 'addNewEvent_save', payload: r.data.data })
 			})
 			// catch error
 			.catch((err) => {
