@@ -1,11 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import './Header.css'
 
 interface HeaderProps {
 	content: string
 }
 export default function Header(props: HeaderProps) {
+	const [show, setShow] = useState(false)
+	const history = useHistory()
+	const handleClick = () => {
+		setShow(!show)
+	}
+
+	const handleClickLogout = () => {
+		localStorage.removeItem('token')
+		history.push('./login')
+		setShow(false)
+	}
 	return (
 		<div className='Header'>
 			<div className='Header__logo'>Event List</div>
@@ -37,7 +48,7 @@ export default function Header(props: HeaderProps) {
 										pathname: `/register`,
 									}}
 								>
-									<div >Register</div>
+									<div>Register</div>
 								</Link>
 							</div>
 						)
@@ -45,7 +56,11 @@ export default function Header(props: HeaderProps) {
 				} else {
 					return (
 						<div className='Header-logined'>
-							<span className='Header-logined__avatar'></span>
+							<span className='Header-logined__avatar' onClick={handleClick}></span>
+							<div className='Header__logout' style={{ display: show ? 'block' : 'none' }} onClick={handleClickLogout}>
+								{' '}
+								Logout
+							</div>
 						</div>
 					)
 				}

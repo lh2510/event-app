@@ -37,7 +37,6 @@
 	background-color: white;
 }
 
-
 .Header-logined__avatar {
 	position: absolute;
 	width: 40px;
@@ -50,4 +49,15 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 40px 40px;
+}
+
+.Header__logout {
+	position: absolute;
+	right: 10px;
+	top: 55px;
+	padding: 10px;
+
+	background-color: grey;
+	cursor: pointer;
+	color: white;
 }
