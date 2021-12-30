@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux'
 
 interface EditEventItem {
 	id?: string
@@ -11,8 +12,13 @@ interface EditEventItem {
 	isCompleted?: boolean
 }
 export default function EditEventItem(props: EditEventItem) {
+	const dispatch = useDispatch()
 	const [saveOrDelete, setSaveOrDelete] = useState('')
 	const [deleteSuccess, setDeleteSuccess] = useState(false)
+	const [checked, setChecked] = useState(false)
+	const [from, setFrom] = useState(props.from?.slice(0, 16))
+	const [to, setTo] = useState(props.to?.slice(0, 16))
+
 	const {
 		register,
 		handleSubmit,
@@ -28,6 +34,7 @@ export default function EditEventItem(props: EditEventItem) {
 				.put(`http://localhost:4000/api/event/${props.id}`, data, { headers: { Authorization: `Bearer ${token}` } })
 				.then((r) => {
 					console.log(r.data)
+					dispatch({ type: 'makeEditSaveTrue' })
 				})
 				// catch error
 				.catch((err) => {
@@ -54,6 +61,16 @@ export default function EditEventItem(props: EditEventItem) {
 	const handleDelete = () => {
 		setSaveOrDelete('delete')
 	}
+	const handleClick = () => {
+		setChecked(!checked)
+	}
+
+	const handleOnChangeFrom = (e: any) => {
+		setFrom(e.currentTarget.value)
+	}
+	const handleOnChangeTo = (e: any) => {
+		setTo(e.currentTarget.value)
+	}
 
 	return (
 		<>
@@ -61,11 +78,11 @@ export default function EditEventItem(props: EditEventItem) {
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className='row-wrapper'>
 						<div>
-							<input type='datetime-local' placeholder={props.from} {...register('from')} />
+							<input type='datetime-local' value={from} {...register('from')} onChange={handleOnChangeFrom} />
 						</div>
 
 						<div>
-							<input type='datetime-local' placeholder={props.to} {...register('to')} />
+							<input type='datetime-local' value={to} {...register('to')} onChange={handleOnChangeTo} />
 						</div>
 
 						<div>
@@ -73,7 +90,7 @@ export default function EditEventItem(props: EditEventItem) {
 						</div>
 
 						<div>
-							<input type='checkbox' placeholder='' {...register('isCompleted')} />
+							<input type='checkbox' checked={checked ? true : false} onClick={handleClick} {...register('isCompleted')} />
 						</div>
 
 						<input className='input-submit' type='submit' value='Save' onClick={handleSave} />

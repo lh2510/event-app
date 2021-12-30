@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { store } from '../../redux/addNewEvent.redux'
+import { store } from '../../redux/store'
 import EventItem from './Event/EventItem'
 import './EventWrapper.css'
 import AddEventItem from './Event/AddEventItem'
+import { useSelector, useDispatch, useStore, RootStateOrAny } from 'react-redux'
 
 export default function EventPage() {
 	const [EventList, setEventList] = useState([])
-	const [update, forceUpdate] = useState(false)
+	const dispatch = useDispatch()
+	const storevalue = useStore().getState()
+	console.log(storevalue)
+	const addNewEventValue = useSelector((state: RootStateOrAny) => state.addNewEvent)
+
 	const handleClick = () => {
-		store.dispatch({ type: 'makeTrue' })
+		dispatch({ type: 'makeTrue' })
 		console.log(store.getState())
 	}
 
 	useEffect(() => {
 		store.subscribe(() => {
-			forceUpdate((pre) => !pre)
 			if (store.getState().addNewEvent === false) {
 				axios
 					.get('http://localhost:4000/api/event/', { headers: { Authorization: `Bearer ${token}` } })
@@ -58,7 +62,7 @@ export default function EventPage() {
 				<div>Actions</div>
 			</div>
 
-			<div>{store.getState().addNewEvent ? <AddEventItem /> : null} </div>
+			<div>{addNewEventValue ? <AddEventItem /> : null} </div>
 
 			<div className='EventWrapper__row'>
 				{EventList.map((item: any) => {
